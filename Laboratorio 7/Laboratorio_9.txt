@@ -1,0 +1,79 @@
+===================================================
+Authors: Alejandro Barrachina, Clara Fernandez
+Description: act_9
+===================================================
+
+Ejercicio 1:
+	1) La sentencia en la linea 6 es innecesaria, ya que est�s poniendo un savepoint justo despues de un commit(create table).
+	   La sentencia en la linea 14 es innecesaria, no es l�gico poner un savepoint justo antes de cerrar un commit.
+	
+
+	2) La sentencia en la linea 21 a parte de ser innecesaria dar� error ya que el savepoint paso_tres ya no existe.
+	   La sentencia en la linea 12 dar� error porque no se puede introducir otra fila con la misma primary key.
+
+
+	3) La linea 22 mostrar� la informaci�n insertada en la linea 20(ya que el rollback to savepoint da error), mientras que la linea 24 muestra que esa fila no existe.
+
+	4) Hay un total de 5 transacciones:
+		1.- De la linea 1 a la 5
+		2.- De la linea 6 a la 15
+		3.- De la linea 16 a la 19
+		4.- De la linea 20 a la 23
+		5.- De la linea 24 a la 25
+
+
+Ejercicio 2:
+	1) La sentencia en la linea 1 es innecesaria, ya que al crear una tabla justo despues se produce un commit que anula el savepoint
+	   La sentencia en la linea 7 aunque correcta es innecesaria, ya que no se llega a usar
+	   La sentencia en la linea 14 es innecesaria pero correcta, ya que al crearse una tabla siempre se produce un commit antes de la senctencia de creaci�n
+	   
+
+	2) La sentencia en la linea 12 produce error al repetirse un valor de primary key
+	   La sentencia en la linea 20 produce error ya que no existe ning�n savepoint paso_tres
+	   La sentencia en la linea 13 produce error ya que no existe ninguna pelicula de nombre Hamlet en la base de datos
+	
+
+	3) Linea 21: Breakfast at Tiffanys 100
+	   Linea 22: My Fair Lady 300
+
+	4) Hay un total de 7 transacciones:
+		1.- De la linea 1 a la 1
+		2.- De la linea 2 a la 5
+		3.- De la linea 6 a la 9
+		4.- De la linea 10  a la 11
+		5.- De la linea 12 a la 14
+		6.- De la linea 15 a la 18
+		7.- De la linea 19 a la 23
+
+Ejercicio 3:
+	1) La sentencia en la linea 1 es innecesaria ya que el savepoint desaparece al crearse la tabla
+	   La sentencia en la linea 3 es innecesaria ya que el ultimo commit es en la linea anterior tras crearse la tabla
+	   La sentencia en la linea 14 da error ya que tras el drop table se produce un commit y el savepoint paso_dos deja de existir
+	 
+
+	2) Al final solo quedar�a la tabla Aux con los valores nombre: Marta // Edad: 27
+	
+
+	3) Hay un total de 6 transacciones:
+		1.- De la linea 1 a la 1
+		2.- De la linea 2 a la 2
+		3.- De la linea 3 a la 3
+		4.- De la linea 4 a la 11
+		5.- De la linea 12 a la 12
+		6.- De la linea 12 a la 14 pero no finaliza al no haber rollback total o commit
+
+Ejercicio 4:
+	1) La sentencia en la linea 1 es innecesaria ya que declarar un savepoint antes de crear una tabla no es necesario ya que se anular�a
+	   Las sentencias en las lineas 3 y 4 son innecesarias ya que hacer un savepoint y seguido un rollback al mismo no tiene sentido
+	   
+	2) La sentencia en la linea 5 da error al no poder crearse dos tablas con el mismo nombre
+	   La sentencia en la linea 10 da error ya que ese savepoint dejo de existir tras el commit de la linea 9
+
+
+	3) El resultado de la sentencia de la linea 11 seria a: 1
+	
+	4) Hay un total de 4 transacciones:
+		1.- De la linea 1 a la 1
+		2.- De la linea 2 a la 2
+		3.- De la linea 3 a la 9
+		4.- De la linea 10  a la 11 pero no finaliza al no haber un rollback total o un commit	
